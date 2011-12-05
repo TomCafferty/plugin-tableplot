@@ -1,0 +1,71 @@
+
+<HTML>
+<table class="sortable" id="Earthquakes">
+	<caption>2011 Number of Earthquakes Worldwide 
+
+</caption>
+	<tr>
+		<th scope="col">Year</th>
+		<th scope="col">Number Earthquakes</th>
+	</tr>
+	<tr>
+		<th scope="row">2000</th>
+		<td>22256</td>
+	</tr>
+	<tr>
+		<th scope="row">2001</th>
+		<td>23534</td>
+	</tr>
+	<tr>
+		<th scope="row">2002</th>
+		<td>27454</td>
+	</tr>
+	<tr>
+		<th scope="row">2003</th>
+		<td>31419</td>
+	</tr>
+	<tr>
+		<th scope="row">2004</th>
+		<td>31194</td>
+	</tr>
+	<tr>
+		<th scope="row">2005</th>
+		<td>30478</td>
+	</tr>
+	<tr>
+		<th scope="row">2006</th>
+		<td>29568</td>
+	</tr>
+	<tr>
+		<th scope="row">2007</th>
+		<td>29685</td>
+	</tr>
+	<tr>
+		<th scope="row">2008</th>
+		<td>31777</td>
+	</tr>
+	<tr>
+		<th scope="row">2009</th>
+		<td>14825</td>
+	</tr>
+	<tr>
+		<th scope="row">2010</th>
+		<td>21546</td>
+	</tr>
+	<tr>
+		<th scope="row">2011</th>
+		<td>20086</td>
+	</tr>
+</table>
+
+</HTML>
+
+
+<tableplot>&series=columns&width=400&height=400&id=Earthquakes&plotArgs={title: {text: 'Number of Earthquakes Worldwide', fontSize: '14pt', textColor: 'skyblue'}, axes: {xaxis: {renderer: $.jqplot.CategoryAxisRenderer, tickRenderer: $.jqplot.CanvasAxisTickRenderer ,tickOptions: {angle: -30}}}, seriesDefaults: {renderer:$.jqplot.BarRenderer }}&
+</tableplot>
+
+{{keywords>table2plot}}
+
+\\ Source: [[http://earthquake.usgs.gov/earthquakes/eqarchives/year/eqstats.php|United States Geological Survey]]
+
+Note: Starting in January 2009, the USGS National Earthquake Information Center no longer locates earthquakes smaller than magnitude 4.5 outside the United States, unless they receive specific information that the earthquake was felt or caused damage. 
