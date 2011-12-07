@@ -1,4 +1,4 @@
--<?php
+<?php
 /**
  * Table Plot Syntax Plugin
  *
@@ -25,7 +25,7 @@ class syntax_plugin_tableplot extends DokuWiki_Syntax_Plugin {
             'date'   => '2011-11-21',
             'name'   => 'tableplot',
             'desc'   => 'Integrate JQPlot to plot a table ',
-            'url'    => 'http://www.dokuwiki.org/plugin:tableplot',
+            'url'    => 'http://www.dokuwiki.org/plugin:tableplot'
         );
     }
     /**
