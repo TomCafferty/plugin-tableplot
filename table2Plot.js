@@ -123,6 +123,8 @@
   
           // iterate over each of the rows in the series
           for (i=args.firstSeries;i<=args.lastSeries;i++) {
+            dataIndex = i-args.firstSeries;
+            line1[dataIndex] = new Array();
 
             $dataRow = $('tr',$table).eq(i);
 
@@ -139,10 +141,10 @@
               if (args.xaxisTransform) { x = args.xaxisTransform(x); }
               
               if (args.orient == 'vertical')
-                line1[line1.length] = [x, y];
+                line1[dataIndex][line1[dataIndex].length] = [x, y];
               else {
-                yVal[line1.length] = x;
-                line1[line1.length] = [y, j];
+                yVal[line1[dataIndex].length] = x;
+                line1[dataIndex][line1[dataIndex].length] = [y, j];
               }
             }
           }
@@ -153,6 +155,8 @@
           var $labelRow = $rows.eq(args.labels);
 
           for (j=args.firstSeries;j<=args.lastSeries;j++) { // j designates the column
+            dataIndex = j-args.firstSeries;
+            line1[dataIndex] = new Array();
 
             var label = $labelRow.find('th,td').eq(j).text();
             if (args.labelTransform) { label = args.labelTransform(label); }
@@ -166,10 +170,10 @@
               if (args.xaxisTransform) { x = args.xaxisTransform(x); }
                             
               if (args.orient == 'vertical')
-                line1[line1.length] = [x, y];
+                line1[dataIndex][line1[dataIndex].length] = [x, y];
               else {
-                yVal[line1.length] = x;
-                line1[line1.length] = [y, i];
+                yVal[line1[dataIndex].length] = x;
+                line1[dataIndex][line1[dataIndex].length] = [y, i];
               }
             }
           }
@@ -202,7 +206,7 @@
          var plotArgs = {axes: {xaxis: {autoscale:true, tickRenderer: $.jqplot.CanvasAxisTickRenderer}, yaxis:{renderer:$.jqplot.CategoryAxisRenderer, ticks: yVal}}};      
       $.extend(true,plotArgs,plotArgs_);
          
-      plot1 = $.jqplot(divid, [line1], plotArgs);
+      plot1 = $.jqplot(divid, line1, plotArgs);
 
     });
   };
