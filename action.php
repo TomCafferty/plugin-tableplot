@@ -50,11 +50,11 @@ class action_plugin_tableplot extends DokuWiki_Action_Plugin {
         
         // keyword table2plot used to include plot javascript files
         if (strpos($metadata, 'table2plot') !== false) {
-            $event->data['script'][] = array(
+            $event->data['link'][] = array(
+                            'rel' => 'stylesheet',
                             'type'    => 'text/css',
-                            'charset' => 'utf-8',
                             '_data'   => '',
-                            'src'     => $basePath ."js/jqplot/jquery.jqplot.min.css");
+                            'href'     => $basePath ."js/jqplot/jquery.jqplot.min.css");
             $event->data['script'][] = array(
                             'type'    => 'text/javascript',
                             'charset' => 'utf-8',
@@ -95,6 +95,11 @@ class action_plugin_tableplot extends DokuWiki_Action_Plugin {
                             'charset' => 'utf-8',
                             '_data'   => '',
                             'src'     => $basePath ."js/jqplot/plugins/jqplot.pointLabels.min.js");                                                      
+            $event->data['script'][] = array(
+                            'type'    => 'text/javascript',
+                            'charset' => 'utf-8',
+                            '_data'   => '',
+                            'src'     => $basePath ."js/jqplot/plugins/jqplot.enhancedLegendRenderer.min.js");      
             $event->data['script'][] = array(
                             'type'    => 'text/javascript',
                             'charset' => 'utf-8',
