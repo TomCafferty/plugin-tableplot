@@ -181,7 +181,7 @@
       }
 
       var divid = 'chartdiv_' + args.id;
-      var divstr = '<div id="'+divid+'" class="plot-graph" style="width:'+args.width+'px; height:'+args.height+'px;"></div>';
+      var divstr = '<div id="'+divid+'" style="width:'+args.width+'px; height:'+args.height+'px;" class="plot-graph"></div>';
       if (args.placement) {
           $div = $("#"+args.placement);
       } else 
