@@ -22,7 +22,7 @@ class syntax_plugin_tableplot extends DokuWiki_Syntax_Plugin {
         return array(
             'author' => 'Tom Cafferty',
             'email'  => 'tcafferty@glocalfocal.com',
-            'date'   => '2011-11-21',
+            'date'   => '2011-12-29',
             'name'   => 'tableplot',
             'desc'   => 'Integrate JQPlot to plot a table ',
             'url'    => 'http://www.dokuwiki.org/plugin:tableplot'
