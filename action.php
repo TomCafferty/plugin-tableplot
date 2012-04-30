@@ -59,11 +59,6 @@ class action_plugin_tableplot extends DokuWiki_Action_Plugin {
                             'type'    => 'text/javascript',
                             'charset' => 'utf-8',
                             '_data'   => '',
-                            'src'     => $basePath ."js/jquery-1.5.2.min.js");
-            $event->data['script'][] = array(
-                            'type'    => 'text/javascript',
-                            'charset' => 'utf-8',
-                            '_data'   => '',
                             'src'     => $basePath ."js/jqplot/jquery.jqplot.min.js");
             $event->data['script'][] = array(
                             'type'    => 'text/javascript',

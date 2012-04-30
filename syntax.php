@@ -57,16 +57,7 @@ class syntax_plugin_tableplot extends DokuWiki_Syntax_Plugin {
      * Handle the match
      */
     function handle($match, $state, $pos, &$handler){
-        global $ID;
         parse_str($match, $return);   
-        
-        $key = 'keywords';
-        $metaKeywords = p_get_metadata($ID, $key);
-        $metaKeywords .= ',table2plot';
-        $keywords = array ('keywords' => $metaKeywords);
-        // set keyword to include sort javascript
-        p_set_metadata($ID, $keywords);
-
         return $return;
     }
 
@@ -82,7 +73,7 @@ class syntax_plugin_tableplot extends DokuWiki_Syntax_Plugin {
       global $ID;
       global $conf;
       if($mode != 'xhtml') return false;
-
+      
       $series      = "series:'";
       $idstr       = "id:'";
       $orient      = "orient:'";
@@ -194,8 +185,8 @@ class syntax_plugin_tableplot extends DokuWiki_Syntax_Plugin {
       $grafArgs = '<script type="text/javascript"> jQuery(\'#'.$id.'\').tablePlot({'.$orient .$series. $firstSeries . $lastSeries . $labels . $xaxis .$dataStart .$dataEnd . $position .$width .$height .$dataTransform .$labelTransform .$xaxisTransform .$placement .$idstr;
       $allArgs = rtrim($grafArgs,',') . '},' .$plotArgs;
       $cmd = rtrim($allArgs,',') . '); </script>';
-	  
-	  $renderer->doc .= $cmd; 
+
+      $renderer->doc .= $cmd; 
 	  return true;
     }
 }
