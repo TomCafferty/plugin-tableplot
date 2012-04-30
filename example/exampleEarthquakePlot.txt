@@ -63,6 +63,7 @@
 
 <tableplot>&series=columns&width=400&height=400&id=Earthquakes&plotArgs={title: {text: 'Number of Earthquakes Worldwide', fontSize: '14pt', textColor: 'skyblue'}, axes: {xaxis: {renderer: $.jqplot.CategoryAxisRenderer, tickRenderer: $.jqplot.CanvasAxisTickRenderer ,tickOptions: {angle: -30}}}, seriesDefaults: {renderer:$.jqplot.BarRenderer }}&
 </tableplot>
+{{keywords>table2plot}}
 
 \\ Source: [[http://earthquake.usgs.gov/earthquakes/eqarchives/year/eqstats.php|United States Geological Survey]]
 
