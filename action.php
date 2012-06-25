@@ -99,7 +99,7 @@ class action_plugin_tableplot extends DokuWiki_Action_Plugin {
                             'type'    => 'text/javascript',
                             'charset' => 'utf-8',
                             '_data'   => '',
-                            'src'     => $basePath ."dokuwiki/lib/plugins/tableplot/table2Plot.js"); 
+                            'src'     => DOKU_BASE."lib/plugins/tableplot/table2Plot.js"); 
        }
     }
 }
