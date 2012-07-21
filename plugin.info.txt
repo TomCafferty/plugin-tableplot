@@ -1,0 +1,9 @@
+base tableplot
+author tom_c
+email tcafferty@glocalfocal.com
+date 2012-07-20
+name Tableplot Plugin
+desc uses jqPlot to plot data from a table
+url http://www.dokuwiki.org/plugin:tableplot
+
+
