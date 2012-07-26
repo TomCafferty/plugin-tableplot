@@ -203,7 +203,7 @@
       if (args.orient == 'vertical')
          var plotArgs = {axes: {xaxis: {renderer: jQuery.jqplot.CategoryAxisRenderer, tickOptions: {angle: -30}}, yaxis: {autoscale:true,}}};
       else
-         var plotArgs = {axes: {xaxis: {autoscale:true, tickRenderer: jQuery.jqplot.CanvasAxisTickRenderer}, yaxis:{renderer:$.jqplot.CategoryAxisRenderer, ticks: yVal}}};      
+         var plotArgs = {axes: {xaxis: {autoscale:true, tickRenderer: jQuery.jqplot.CanvasAxisTickRenderer}, yaxis:{renderer:jQuery.jqplot.CategoryAxisRenderer, ticks: yVal}}};      
       $.extend(true,plotArgs,plotArgs_);
          
       plot1 = jQuery.jqplot(divid, line1, plotArgs);
