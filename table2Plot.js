@@ -70,7 +70,7 @@
       /* data transformation before plotting */
       dataTransform: null, // function to run on cell contents before passing to flot; string -> string
       labelTransform: null, // function to run on cell contents before passing to flot; string -> string
-      xaxisTransform: null, // function to run on cell contents before passing to flot; string -> string
+      xaxisTransform: null // function to run on cell contents before passing to flot; string -> string
     }
 
     // override defaults with user args
@@ -109,18 +109,23 @@
       var max = args.max;
       var $rows = $('tr',$table);
       var line1 = new Array();
-      var yVal = new Array();
+      var line2 = new Array(args.lastSeries+1);    
+      for (i=1; i <args.lastSeries+1; i++) {
+          line2[i]=new Array();
+      }
+      var line3 = new Array(args.lastSeries);    
+      for (i=0; i <args.lastSeries; i++) {
+          line3[i]=new Array();
+      }
+      var ticks = new Array();
+      var yVal  = new Array();
 
+      ind = 1;
       switch (args.series) {
-          //
-          // ** WARNING ** 
-          // This selection (rows) not supported.  This section of code needs to be updated to translate
-          // the original flot parameters into the new plot software jplot parameters.
-          //
-        case 'rows':
 
+        case 'rows':
           var $xaxisRow = $rows.eq(args.xaxis);
-  
+
           // iterate over each of the rows in the series
           for (i=args.firstSeries;i<=args.lastSeries;i++) {
             dataIndex = i-args.firstSeries;
@@ -140,9 +145,13 @@
               if (args.dataTransform) { y = args.dataTransform(y); }
               if (args.xaxisTransform) { x = args.xaxisTransform(x); }
               
-              if (args.orient == 'vertical')
-                line1[dataIndex][line1[dataIndex].length] = [x, y];
-              else {
+              if (args.orient == 'vertical') {
+                if (plotArgs_.stackSeries) {
+                   line2[i][j-1] = parseInt(y, 10);
+                   ind=ind+1;
+                } else
+                   line1[dataIndex][line1[dataIndex].length] = [x, y];
+              } else {
                 yVal[line1[dataIndex].length] = x;
                 line1[dataIndex][line1[dataIndex].length] = [y, j];
               }
@@ -169,11 +178,21 @@
               if (args.dataTransform) { y = args.dataTransform(y); }
               if (args.xaxisTransform) { x = args.xaxisTransform(x); }
                             
-              if (args.orient == 'vertical')
-                line1[dataIndex][line1[dataIndex].length] = [x, y];
-              else {
-                yVal[line1[dataIndex].length] = x;
-                line1[dataIndex][line1[dataIndex].length] = [y, i];
+              if (args.orient == 'vertical') {
+                if (plotArgs_.stackSeries) {
+                   line2[j][i-1] = parseInt(y, 10);
+                   ind=ind+1;
+                   if (i > 0) ticks[i-1]=x;
+                } else
+                    line1[dataIndex][line1[dataIndex].length] = [x, y];
+              } else {
+                if (plotArgs_.stackSeries) {
+                   line2[j][i-1] = parseInt(y, 10);
+                   ind=ind+1;
+                } else {
+                    yVal[line1[dataIndex].length] = x;
+                    line1[dataIndex][line1[dataIndex].length] = [y, i];
+                }
               }
             }
           }
@@ -201,13 +220,21 @@
       }
       var plotArgs;
       if (args.orient == 'vertical')
-         var plotArgs = {axes: {xaxis: {renderer: jQuery.jqplot.CategoryAxisRenderer, tickOptions: {angle: -30}}, yaxis: {autoscale:true,}}};
+         if (plotArgs_.stackSeries)
+           var plotArgs = {axes: {xaxis: {renderer: jQuery.jqplot.CategoryAxisRenderer, tickOptions: {angle: -30}, ticks: ticks}}};
+         else
+           var plotArgs = {axes: {xaxis: {renderer: jQuery.jqplot.CategoryAxisRenderer, tickOptions: {angle: -30}}}};
       else
-         var plotArgs = {axes: {xaxis: {autoscale:true, tickRenderer: jQuery.jqplot.CanvasAxisTickRenderer}, yaxis:{renderer:jQuery.jqplot.CategoryAxisRenderer, ticks: yVal}}};      
-      $.extend(true,plotArgs,plotArgs_);
-         
-      plot1 = jQuery.jqplot(divid, line1, plotArgs);
-
+        var plotArgs = {axes: {xaxis: {autoscale:true, tickRenderer: jQuery.jqplot.CanvasAxisTickRenderer}, yaxis:{renderer:jQuery.jqplot.CategoryAxisRenderer, ticks: yVal}}};      
+      jQuery.extend(true,plotArgs,plotArgs_);
+               
+     if (plotArgs_.stackSeries) {
+         for (i=1; i<=args.lastSeries; i++) 
+             line3[i-1] = line2[i];
+         plot1 = jQuery.jqplot(divid, line3, plotArgs);
+     }
+     else
+       plot1 = jQuery.jqplot(divid, line1, plotArgs);
     });
   };
 
