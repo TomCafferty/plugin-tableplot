@@ -72,6 +72,13 @@ class syntax_plugin_tableplot extends DokuWiki_Syntax_Plugin {
       global $INFO;
       global $ID;
       global $conf;
+
+      // store meta info for this page
+      if($mode == 'metadata'){
+        $renderer->meta['plugin']['tableplot'] = true;
+        return true;
+      }
+
       if($mode != 'xhtml') return false;
       
       $series      = "series:'";

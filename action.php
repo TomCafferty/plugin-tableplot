@@ -42,15 +42,12 @@ class action_plugin_tableplot extends DokuWiki_Action_Plugin {
     function tableplot_hookjs(&$event, $param) {
         global $INFO;
         global $ID;
-        $key = 'keywords';
         $basePath = DOKU_BASE;
         $basePath = str_replace("dokuwiki/", "", $basePath);
-        
-        $metadata = p_get_metadata($ID, $key, false);
-        
-        // keyword table2plot used to include plot javascript files
-        if (strpos($metadata, 'table2plot') !== false) {
-            $event->data['link'][] = array(
+               
+        // metadata check to include javascript files if needed 
+        if (p_get_metadata($ID, 'plugin tableplot')) { 
+                $event->data['link'][] = array(
                             'rel' => 'stylesheet',
                             'type'    => 'text/css',
                             '_data'   => '',
@@ -85,6 +82,11 @@ class action_plugin_tableplot extends DokuWiki_Action_Plugin {
                             'charset' => 'utf-8',
                             '_data'   => '',
                             'src'     => $basePath ."js/jqplot/plugins/jqplot.canvasAxisTickRenderer.min.js");
+            $event->data['script'][] = array(
+                            'type'    => 'text/javascript',
+                            'charset' => 'utf-8',
+                            '_data'   => '',
+                            'src'     => $basePath ."js/jqplot/plugins/jqplot.highlighter.js");                                                      
             $event->data['script'][] = array(
                             'type'    => 'text/javascript',
                             'charset' => 'utf-8',
