@@ -86,7 +86,7 @@ class action_plugin_tableplot extends DokuWiki_Action_Plugin {
                             'type'    => 'text/javascript',
                             'charset' => 'utf-8',
                             '_data'   => '',
-                            'src'     => $basePath ."js/jqplot/plugins/jqplot.highlighter.js");                                                      
+                            'src'     => $basePath ."js/jqplot/plugins/jqplot.highlighter.min.js");                                                      
             $event->data['script'][] = array(
                             'type'    => 'text/javascript',
                             'charset' => 'utf-8',
