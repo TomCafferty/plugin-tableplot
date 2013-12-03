@@ -223,9 +223,9 @@
          if (plotArgs_.stackSeries)
            var plotArgs = {axes: {xaxis: {renderer: jQuery.jqplot.CategoryAxisRenderer, tickOptions: {angle: -30}, ticks: ticks}}};
          else
-           var plotArgs = {axes: {xaxis: {renderer: jQuery.jqplot.CategoryAxisRenderer, tickOptions: {angle: -30}}}};
+           var plotArgs = plotArgs_; 
       else
-        var plotArgs = {axes: {xaxis: {autoscale:true, tickRenderer: jQuery.jqplot.CanvasAxisTickRenderer}, yaxis:{renderer:jQuery.jqplot.CategoryAxisRenderer, ticks: yVal}}};      
+           var plotArgs = plotArgs_; 
       jQuery.extend(true,plotArgs,plotArgs_);
                
      if (plotArgs_.stackSeries) {
