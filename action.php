@@ -45,13 +45,21 @@ class action_plugin_tableplot extends DokuWiki_Action_Plugin {
         $basePath = DOKU_BASE;
         $basePath = str_replace("dokuwiki/", "", $basePath);
                
+        $key = 'keywords';      
+        $metadata = p_get_metadata($ID, $key, false);
+               
         // metadata check to include javascript files if needed 
-        if (p_get_metadata($ID, 'plugin tableplot')) { 
+        if (p_get_metadata($ID, 'plugin tableplot') || (strpos($metadata, 'table2plot') !== false) ) { 
                 $event->data['link'][] = array(
                             'rel' => 'stylesheet',
                             'type'    => 'text/css',
                             '_data'   => '',
                             'href'     => $basePath ."lib/scripts/jqplot/jquery.jqplot.min.css");
+            $event->data['script'][] = array(
+                            'type'    => 'text/javascript',
+                            'charset' => 'utf-8',
+                            '_data'   => '',
+                            'src'     => $basePath ."lib/scripts/jquery/jquery.min.js");
             $event->data['script'][] = array(
                             'type'    => 'text/javascript',
                             'charset' => 'utf-8',
